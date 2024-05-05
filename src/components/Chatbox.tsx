@@ -7,7 +7,7 @@ export default function Chatbox() {
   return (
     <div className="md:grid grid-cols-4">
       <Sidebar />
-      <div className="col-start-2 col-end-5 h-screen grid grid-rows-[1fr_35px]">
+      <div className="col-start-2 col-end-5 grid grid-rows-[1fr_35px] md:h-screen h-[calc(100vh-64px)]">
         <Messages />
         <SendMessageButton />
       </div>

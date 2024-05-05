@@ -2,8 +2,11 @@ import { auth } from "../lib/firebase";
 import Cookies from "js-cookie";
 import ChannelPopup from "./ChannelPopup";
 import { useState } from "react";
+import Menu from "../assets/menu.svg";
+import classNames from "classnames";
 
 export default function Sidebar() {
+  const [showMenu, setShowMenu] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const channel = Cookies.get("channel");
   const isMainChannel = !channel || channel === "main";
@@ -19,11 +22,25 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="bg-[#031645] h-screen flex flex-col justify-between pt-4 pb-8 items-center px-8">
+      <div
+        className={classNames(
+          "bg-[#031645] h-16 overflow-hidden md:h-screen flex flex-col justify-between pt-4 pb-8 items-center px-8",
+          { "!h-screen absolute z-20": showMenu }
+        )}
+      >
         <div className="flex flex-col gap-8 w-full">
-          <h1 className="text-3xl !text-[#aaa] text-center ">
-            Let's <span className="!text-[#eee]">chat</span>!
-          </h1>
+          <div className="relative">
+            <h1 className="text-3xl !text-[#aaa] text-center ">
+              Let's <span className="!text-[#eee]">chat</span>!
+            </h1>
+            <img
+              src={Menu}
+              className="absolute z-10 top-0 -right-4 cursor-pointer"
+              width={40}
+              height={40}
+              onClick={() => setShowMenu((show) => !show)}
+            />
+          </div>
           <div className="w-full flex flex-col items-center">
             <h3 className="text-xl font-bold text-center">
               You are in the {channel ?? "main"} channel!

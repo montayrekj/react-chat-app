@@ -1,17 +1,12 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import Navbar from "./components/Navbar";
 import { auth } from "./lib/firebase";
 import Welcome from "./components/Welcome";
+import Chatbox from "./components/Chatbox";
 
 function App() {
   const [user] = useAuthState(auth);
 
-  return (
-    <>
-      <Navbar />
-      {!user && <Welcome />}
-    </>
-  );
+  return <>{user ? <Chatbox /> : <Welcome />}</>;
 }
 
 export default App;

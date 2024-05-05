@@ -19,7 +19,7 @@ export default function Message({
   const [user] = useAuthState(auth);
 
   const currrentUser = user?.uid === uid ? "current" : "other";
-  const date = getFormattedDate(new Date(createdAt.toDate()));
+  const date = createdAt ? getFormattedDate(new Date(createdAt.toDate())) : "";
 
   const fullname = name.split("(")[0];
   return (

@@ -31,9 +31,9 @@ export default function Messages() {
       QuerySnapshot.forEach((doc) => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
       });
-      const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
-      );
+      const sortedMessages = fetchedMessages
+        .filter((message) => !!message.createdAt)
+        .sort((a, b) => a.createdAt - b.createdAt);
       setMessages(sortedMessages);
     });
     return () => {

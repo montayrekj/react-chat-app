@@ -43,7 +43,8 @@ export default function Sidebar() {
           </div>
           <div className="w-full flex flex-col items-center">
             <h3 className="text-xl font-bold text-center">
-              You are in the {channel ?? "main"} channel!
+              You are in the {!!channel && channel !== "" ? channel : "main"}{" "}
+              channel!
             </h3>
             <p className="text-sm text-center mt-4">
               You can also{" "}
